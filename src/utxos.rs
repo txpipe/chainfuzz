@@ -1,7 +1,4 @@
-use std::{
-    collections::HashMap,
-    ops::{Add, Range},
-};
+use std::{collections::HashMap, ops::Range};
 
 use rand::Rng;
 use sha2::{Digest, Sha256};
