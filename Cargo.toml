@@ -1,7 +1,16 @@
 [package]
 name = "chainfuzz"
+description = "A library for fuzzing UTxO blockchain data structures"
 version = "0.1.0"
 edition = "2024"
+publish = true
+authors = ["TxPipe"]
+license = "Apache-2.0"
+repository = "https://github.com/txpipe/chainfuzz"
+keywords = ["blockchain", "cardano", "utxo", "dsl"]
+documentation = "https://docs.rs/chainfuzz"
+homepage = "https://github.com/txpipe/chainfuzz"
+readme = "README.md"
 
 [dependencies]
 hex = "0.4.3"
