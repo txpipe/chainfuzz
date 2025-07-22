@@ -26,15 +26,15 @@ impl Utxo {
 }
 
 pub trait UtxoGenerator {
-    fn generate(&self, address: &KnownAddress) -> Utxo;
+    fn generate(&self, txoref: &TxoRef, address: &KnownAddress, sequence: u64) -> Utxo;
 }
 
 impl<F> UtxoGenerator for F
 where
-    F: Fn(&KnownAddress) -> Utxo,
+    F: Fn(&TxoRef, &KnownAddress, u64) -> Utxo,
 {
-    fn generate(&self, address: &KnownAddress) -> Utxo {
-        self(address)
+    fn generate(&self, txoref: &TxoRef, address: &KnownAddress, sequence: u64) -> Utxo {
+        self(txoref, address, sequence)
     }
 }
 
@@ -143,7 +143,7 @@ where
             let tx = tx_sequence_to_hash(tx as u64);
 
             let key = TxoRef::new(tx, ordinal as u16);
-            let cbor = utxo_generator.generate(address);
+            let cbor = utxo_generator.generate(&key, address, ordinal as u64);
 
             utxos.insert(key, cbor);
         }
